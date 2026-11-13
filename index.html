@@ -1,0 +1,487 @@
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مهدی دالگ خیز</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;800;900&display=swap');
+
+:root {
+    --red: #ff1238;
+    --darkred: #850016;
+    --bg: #070709;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background:
+        radial-gradient(ellipse at 50% 0%, #3b0712 0%, transparent 50%),
+        radial-gradient(ellipse at bottom, #19050b, #050507 70%);
+    color: white;
+    font-family: 'Vazirmatn', Tahoma, sans-serif;
+    overflow-x: hidden;
+}
+
+/* BACKGROUND */
+
+.background {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.orb {
+    position: absolute;
+    width: 350px;
+    height: 350px;
+    border-radius: 50%;
+    background: #ff002f;
+    filter: blur(140px);
+    opacity: .13;
+    animation: float 8s infinite alternate ease-in-out;
+}
+
+.orb.one {
+    top: 10%;
+    right: -150px;
+}
+
+.orb.two {
+    bottom: 0;
+    left: -150px;
+    animation-delay: 2s;
+}
+
+@keyframes float {
+    to {
+        transform: translate(80px, 80px);
+    }
+}
+
+/* PARTICLES */
+
+.particle {
+    position: fixed;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: #ff254b;
+    box-shadow: 0 0 12px red;
+    animation: rise linear infinite;
+    pointer-events: none;
+}
+
+@keyframes rise {
+    from {
+        transform: translateY(110vh);
+        opacity: 0;
+    }
+    20% { opacity: 1; }
+    to {
+        transform: translateY(-10vh);
+        opacity: 0;
+    }
+}
+
+/* MAIN */
+
+.main {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 1100px;
+    margin: auto;
+    padding: 65px 20px;
+    text-align: center;
+}
+
+.header {
+    margin-bottom: 65px;
+    animation: appear 1s ease;
+}
+
+.header h1 {
+    font-size: clamp(35px, 7vw, 75px);
+    font-weight: 900;
+    color: white;
+    text-shadow:
+        0 0 10px #ff1238,
+        0 0 35px #ff1238,
+        0 0 80px #9e001b;
+    letter-spacing: -2px;
+}
+
+.header .line {
+    width: 150px;
+    height: 3px;
+    margin: 20px auto;
+    background: linear-gradient(90deg, transparent, red, transparent);
+    box-shadow: 0 0 20px red;
+}
+
+/* GALLERY */
+
+.gallery {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 35px;
+    flex-wrap: wrap;
+}
+
+.person {
+    position: relative;
+    width: 300px;
+    max-width: 42%;
+    padding: 10px;
+    border-radius: 22px;
+    background: linear-gradient(145deg,
+        rgba(255,255,255,.09),
+        rgba(255,0,30,.04));
+    border: 1px solid rgba(255,40,70,.35);
+    box-shadow:
+        0 0 30px rgba(255,0,40,.12),
+        inset 0 0 20px rgba(255,0,40,.04);
+    backdrop-filter: blur(15px);
+    transition: .5s;
+    animation: appear 1.2s backwards;
+}
+
+.person:nth-child(2) {
+    animation-delay: .25s;
+}
+
+.person:hover {
+    transform: translateY(-12px) scale(1.035);
+    border-color: #ff1238;
+    box-shadow:
+        0 0 30px rgba(255,0,40,.35),
+        0 0 70px rgba(255,0,40,.13);
+}
+
+.person img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 15px;
+    background: #16070a;
+    border: 1px solid rgba(255,255,255,.08);
+}
+
+.person h2 {
+    font-size: 25px;
+    font-weight: 900;
+    padding: 17px 0 8px;
+    color: #fff;
+    text-shadow: 0 0 15px red;
+}
+
+/* BUTTON */
+
+.action-area {
+    margin-top: 65px;
+}
+
+.attack-button {
+    position: relative;
+    overflow: hidden;
+    padding: 20px 42px;
+    min-width: 270px;
+    border: 1px solid #ff5069;
+    border-radius: 15px;
+    background: linear-gradient(135deg, #ff163e, #920019);
+    color: white;
+    font-family: inherit;
+    font-size: 21px;
+    font-weight: 900;
+    cursor: pointer;
+    box-shadow:
+        0 0 20px rgba(255,0,50,.4),
+        0 0 60px rgba(255,0,50,.12);
+    transition: .3s;
+}
+
+.attack-button:hover {
+    transform: scale(1.07);
+    box-shadow: 0 0 40px red;
+}
+
+.attack-button:active {
+    transform: scale(.94);
+}
+
+.attack-button::before {
+    content: "";
+    position: absolute;
+    top: -100%;
+    left: -100%;
+    width: 60%;
+    height: 300%;
+    background: rgba(255,255,255,.15);
+    transform: rotate(30deg);
+    transition: .6s;
+}
+
+.attack-button:hover::before {
+    left: 150%;
+}
+
+/* RESULT */
+
+.result {
+    margin: 30px auto 0;
+    min-height: 60px;
+    max-width: 500px;
+    padding: 15px;
+    color: #ff667f;
+    font-size: 20px;
+    font-weight: 800;
+    text-shadow: 0 0 15px red;
+    transition: .3s;
+}
+
+.shake {
+    animation: shake .35s ease;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20% { transform: translateX(-10px); }
+    40% { transform: translateX(10px); }
+    60% { transform: translateX(-7px); }
+    80% { transform: translateX(7px); }
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(35px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* SCORE */
+
+.score {
+    margin: 25px auto;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.score-box {
+    min-width: 125px;
+    padding: 15px;
+    border: 1px solid #67101f;
+    border-radius: 14px;
+    background: rgba(255,0,30,.06);
+}
+
+.score-box span {
+    display: block;
+    color: #ff8193;
+    font-size: 13px;
+}
+
+.score-box strong {
+    display: block;
+    font-size: 30px;
+    color: white;
+}
+
+/* FOOTER */
+
+footer {
+    margin-top: 70px;
+    color: #68333d;
+    font-size: 12px;
+}
+
+@media(max-width:600px) {
+    .main {
+        padding: 45px 12px;
+    }
+
+    .gallery {
+        gap: 15px;
+    }
+
+    .person {
+        width: 45%;
+        max-width: 45%;
+        padding: 7px;
+    }
+
+    .person h2 {
+        font-size: 17px;
+    }
+
+    .attack-button {
+        width: 90%;
+        font-size: 18px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="background">
+    <div class="orb one"></div>
+    <div class="orb two"></div>
+</div>
+
+<main class="main">
+
+    <header class="header">
+        <h1>مهدی دالگ خیز</h1>
+        <div class="line"></div>
+    </header>
+
+    <section class="gallery">
+
+        <div class="person">
+            <img src="mahdi.JPG" alt="مهدی">
+            <h2>مهدی</h2>
+        </div>
+
+        <div class="person" id="target">
+            <img src="dalg.JPG" alt="دالگ مهدی">
+            <h2>دالگ مهدی</h2>
+        </div>
+
+    </section>
+
+    <section class="action-area">
+
+        <button class="attack-button" onclick="attack()">
+            کتک زدن دالگ مهدی
+        </button>
+
+        <div class="result" id="result"></div>
+
+        <div class="score">
+
+            <div class="score-box">
+                <span>تعداد ضربات نمایشی</span>
+                <strong id="hits">0</strong>
+            </div>
+
+            <div class="score-box">
+                <span>امتیاز مهدی</span>
+                <strong id="score">0</strong>
+            </div>
+
+        </div>
+
+    </section>
+
+    <footer>
+        MAHDI DALG KHIZ
+    </footer>
+
+</main>
+
+<script>
+
+// PARTICLES
+
+for (let i = 0; i < 35; i++) {
+    const particle = document.createElement("div");
+    particle.className = "particle";
+
+    particle.style.left = Math.random() * 100 + "vw";
+    particle.style.animationDuration = (5 + Math.random() * 10) + "s";
+    particle.style.animationDelay = Math.random() * 8 + "s";
+
+    document.body.appendChild(particle);
+}
+
+// GAME
+
+let hits = 0;
+let score = 0;
+
+const messages = [
+    "دالگ مهدی یک امتیاز از دست داد!",
+    "مهدی کنترل مسابقه را به دست گرفت!",
+    "دالگ مهدی غافلگیر شد!",
+    "امتیاز به نفع مهدی!",
+    "مرحله جدید آغاز شد!",
+    "دالگ مهدی فعلاً شانسی ندارد!",
+    "مهدی همچنان پیشتاز است!"
+];
+
+// SOUND
+
+function playSound() {
+    const audio = new (window.AudioContext ||
+        window.webkitAudioContext)();
+
+    const oscillator = audio.createOscillator();
+    const gain = audio.createGain();
+
+    oscillator.connect(gain);
+    gain.connect(audio.destination);
+
+    oscillator.type = "sawtooth";
+    oscillator.frequency.setValueAtTime(150, audio.currentTime);
+    oscillator.frequency.exponentialRampToValueAtTime(
+        45, audio.currentTime + 0.15
+    );
+
+    gain.gain.setValueAtTime(.12, audio.currentTime);
+    gain.gain.exponentialRampToValueAtTime(
+        .001, audio.currentTime + .2
+    );
+
+    oscillator.start();
+    oscillator.stop(audio.currentTime + .2);
+}
+
+// BUTTON ACTION
+
+function attack() {
+
+    hits++;
+    score += Math.floor(Math.random() * 10) + 1;
+
+    document.getElementById("hits").textContent = hits;
+    document.getElementById("score").textContent = score;
+
+    const result = document.getElementById("result");
+    const target = document.getElementById("target");
+
+    result.textContent =
+        messages[Math.floor(Math.random() * messages.length)];
+
+    result.classList.remove("shake");
+    target.classList.remove("shake");
+
+    void result.offsetWidth;
+
+    result.classList.add("shake");
+    target.classList.add("shake");
+
+    playSound();
+}
+
+</script>
+
+</body>
+</html>
